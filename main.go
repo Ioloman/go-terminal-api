@@ -1,10 +1,14 @@
 package main
 
 import (
-	"log"
-	"os"
+	solar "github.com/Ioloman/go-terminal-api/solar_app"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	log.Println(os.Getenv("LOG_DIR"))
+	r := gin.Default()
+
+	solar.RunApp(r)
+
+	r.Run(":8000")
 }
