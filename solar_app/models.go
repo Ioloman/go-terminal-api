@@ -8,12 +8,12 @@ import (
 )
 
 type Request struct {
-	TerminalId     int          `json:"terminal_id" binding:"required"`
-	Date           time.Time    `json:"date" binding:"required"`
-	BatteryVoltage encodedValue `json:"battery_voltage"`
-	SolarVoltage   encodedValue `json:"solar_voltage"`
-	SolarCurrent   encodedValue `json:"solar_current"`
-	LoadCurrent    encodedValue `json:"load_current"`
+	TerminalId     int          `json:"terminal_id" db:"person_id" binding:"required"`
+	Date           time.Time    `json:"date" db:"date" binding:"required"`
+	BatteryVoltage encodedValue `json:"battery_voltage" db:"battery_voltage"`
+	SolarVoltage   encodedValue `json:"solar_voltage" db:"solar_voltage"`
+	SolarCurrent   encodedValue `json:"solar_current" db:"solar_current"`
+	LoadCurrent    encodedValue `json:"load_current" db:"load_current"`
 }
 
 // parse number that was encoded in signed hex with length of 4

@@ -8,6 +8,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+	"github.com/Ioloman/go-terminal-api/database"
 )
 
 func getLogFile(name string) *os.File {
@@ -21,6 +22,7 @@ func getLogFile(name string) *os.File {
 
 func init() {
 	// read .env
+	log.Println("Loading environment variables")
 	err := godotenv.Load(".env")
 	if err != nil {
 		panic(".env file is not located")
@@ -35,9 +37,12 @@ func init() {
 	}
 
 	// setup logger
+	log.Println("Setting up logger")
 	log.SetFlags(log.Ltime | log.Ldate | log.Lshortfile)
 	if os.Getenv("APP_ENV") == "prod" {
 		file := getLogFile("general.log")
 		log.SetOutput(file)
 	}
+
+	database.SetupDB()
 }
